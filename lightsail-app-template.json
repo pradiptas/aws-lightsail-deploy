@@ -2,7 +2,7 @@
     "serviceName": "aws-lightsail-app",
     "containers": {
        "aws-lightsail-app": {
-          "image": ":aws-lightsail-app.python-app.$CIRCLE_BUILD_NUMBER",
+          "image": "",
           "ports": {
              "8080": "HTTP"
           }

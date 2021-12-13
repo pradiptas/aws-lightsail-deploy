@@ -44,9 +44,14 @@ jobs:
        - run:
           name: deploy to lightsail
           command: |
-           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --image pradsanyal/aws-lightsail-app:latest
+           aws lightsail push-container-image \
+           --region us-east-1 \
+           --service-name aws-lightsail-app \
+           --label python-app \
+           --image pradsanyal/aws-lightsail-app:latest
            aws lightsail get-container-images --service-name aws-lightsail-app | jq --raw-output ".containerImages[0].image" > image.txt
-           jq --arg image $(cat image.txt) '.containers.app.image = $image' container.template.json > container.json
+           echo image.txt
+           jq --arg image $(cat image.txt) '.containers.aws-lightsail-app.image = $image' lightsail-app-template.json > container.json
            aws lightsail create-container-service-deployment --cli-input-json file://$(pwd)/container.json
           
 workflows:
