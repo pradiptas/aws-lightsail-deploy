@@ -41,11 +41,13 @@ jobs:
            # install aws lightsail ctl
            sudo curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
            sudo chmod +x /usr/local/bin/lightsailctl 
-           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --label $CIRCLE_BUILD_NUM --image pradsanyal/aws-lightsail-app:latest
        - run:
           name: deploy to lightsail
           command: |
-           aws lightsail create-container-service-deployment --cli-input-json file://lightsail-app.json
+           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --label $CIRCLE_BUILD_NUM --image pradsanyal/aws-lightsail-app:latest
+           aws lightsail get-container-images --service-name ${service_name} | jq --raw-output ".containerImages[0].image" > image.txt
+           jq --arg image $(cat image.txt) '.containers.app.image = $image' container.template.json > container.json
+           aws lightsail create-container-service-deployment --cli-input-json file://$(pwd)/container.json
           
 workflows:
   deploy-to-lightsail:
