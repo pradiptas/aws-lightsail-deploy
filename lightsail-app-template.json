@@ -1,7 +1,7 @@
 {
     "serviceName": "aws-lightsail-app",
     "containers": {
-       "aws-lightsail-app": {
+       "app": {
           "image": "",
           "ports": {
              "8080": "HTTP"
