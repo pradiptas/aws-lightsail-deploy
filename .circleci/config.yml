@@ -24,7 +24,8 @@ jobs:
           command: brew install aws/tap/lightsailctl
   
   deploy:
-    executor: aws-cli/default
+    docker:
+      - image: cimg/python:3.10.1
     resource_class: small
     steps:
       - aws-cli/setup:
