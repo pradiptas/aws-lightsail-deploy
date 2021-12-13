@@ -39,9 +39,7 @@ def index():
 def new_cases_of_the_day():
     # get today's date in string
     date = datetime.now().strftime("%Y-%m-%d")
-    new_cases = redis_client.get("date")
-    if not new_cases:
-        new_cases = get_new_cases_from_api()
+    new_cases = get_new_cases_from_api()
     return "Number of New Covid Cases in Canada on " + date + ": " + new_cases
 
 
