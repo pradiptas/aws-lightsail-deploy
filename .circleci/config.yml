@@ -31,20 +31,6 @@ jobs:
             sudo apt-get -y install python3-pip
             fi
        - aws-cli/install
-      #  - run:
-      #     name: Install Lightsail Control CLI
-      #     command: |
-      #       curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-      #       brew install aws/tap/lightsailctl
-  
-
-          
-# workflows:
-#   version: 2
-#   build:
-#     jobs:
-#       - build
-#       - deploy:
-#           requires:
-#             - build
-#           context: aws
+       - aws-cli/setup:
+          profile-name: example
+          context: aws
