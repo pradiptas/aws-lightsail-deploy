@@ -4,7 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@2.0
 
 jobs:
-  build_and_push_to_dockerhub:
+  build:
     docker:
       - image: cimg/python:3.10.1
     steps:
@@ -23,8 +23,9 @@ jobs:
           name: Install Lightsail Control CLI
           command: brew install aws/tap/lightsailctl
   
-  deploy_to_lightsail:
+  deploy:
     executor: aws-cli/default
+    resource_class: small
     steps:
       - aws-cli/setup:
           profile-name: default
@@ -37,4 +38,3 @@ workflows:
           requires:
             - build_and_push_to_dockerhub
           context: aws
-  
