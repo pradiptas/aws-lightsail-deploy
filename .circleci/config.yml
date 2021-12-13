@@ -48,8 +48,7 @@ jobs:
            --region us-east-1 \
            --service-name aws-lightsail-app \
            --label python-app \
-            #  --image pradsanyal/aws-lightsail-app:latest
-           --image aws-lightsail-app:latest
+           --image aws-lightsail-app:latest      
            aws lightsail get-container-images --service-name aws-lightsail-app | jq --raw-output ".containerImages[0].image" > image.txt
            echo $(cat image.txt)
            jq --arg image $(cat image.txt) '.containers.app.image = $image' lightsail-app-template.json > container.json
