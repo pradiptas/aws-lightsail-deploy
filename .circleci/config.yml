@@ -32,5 +32,9 @@ jobs:
             fi
        - aws-cli/install
        - aws-cli/setup:
-          profile-name: example
+          profile-name: default
+workflows:
+  aws-cli:
+    jobs:
+      - build:
           context: aws
