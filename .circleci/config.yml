@@ -24,7 +24,7 @@ jobs:
           command: |
             sudo add-apt-repository universe
             sudo apt-get update
-            sudo apt install python3-pip
+            sudo apt-get install python3-pip
             python3 -m pip3 install awscliv2
             aws lightsail 
       #  - run:
