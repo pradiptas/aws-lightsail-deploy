@@ -30,12 +30,12 @@ def get_new_cases_from_api():
         return None
 
 
-@app.route("/")
+""" @app.route("/")
 def index():
-    return "Welcome! Please hit the `/newcases` API to get the number of new covid cases of the day in Canada."
+    return "Welcome! Please hit the `/newcases` API to get the number of new covid cases of the day in Canada." """
 
 
-@app.route("/newcases")
+@app.route("/")
 def new_cases_of_the_day():
     # get today's date in string
     date = datetime.now().strftime("%Y-%m-%d")
