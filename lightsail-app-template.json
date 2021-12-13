@@ -9,7 +9,7 @@
        }
     },
     "publicEndpoint": {
-       "containerName": "aws-lightsail-app",
+       "containerName": "app",
        "containerPort": 8080
     }
   }
