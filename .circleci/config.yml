@@ -10,6 +10,9 @@ jobs:
     steps:
        - checkout
        - setup_remote_docker
+       - aws-cli/setup:
+          profile-name: default
+          context: aws
        - run:
           name: Build and push Docker image
           command: |
@@ -19,3 +22,6 @@ jobs:
             # login to docker hub
             echo $DOCKER_PASSWORD	 | docker login -u $DOCKER_USER --password-stdin
             docker push --all-tags pradsanyal/aws-lightsail-app
+       - run:
+          name: Install Lightsail Control CLI
+          command: brew install aws/tap/lightsailctl
