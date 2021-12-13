@@ -1,0 +1,17 @@
+version: 2
+
+orbs:
+  aws-cli: circleci/aws-cli@1.2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:2.7.14
+    steps:
+       - checkout
+       - run:
+          name: Build and push Docker image
+          command: |
+            docker-compose build .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push ariv3ra/$IMAGE_NAME:$TAG
