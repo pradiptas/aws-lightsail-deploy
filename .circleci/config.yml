@@ -19,11 +19,11 @@ jobs:
             # login to docker hub
             echo $DOCKER_PASSWORD	 | docker login -u $DOCKER_USER --password-stdin
             docker push --all-tags pradsanyal/aws-lightsail-app
-       - run:
-          name: Install Lightsail Control CLI
-          command: |
-            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-            brew install aws/tap/lightsailctl
+      #  - run:
+      #     name: Install Lightsail Control CLI
+      #     command: |
+      #       curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+      #       brew install aws/tap/lightsailctl
   
   deploy:
     docker:
