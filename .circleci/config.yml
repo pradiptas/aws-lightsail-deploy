@@ -33,8 +33,8 @@ workflows:
   version: 2
   build:
     jobs:
-      - build_and_push_to_dockerhub
+      - build
       - deploy_to_lightsail:
           requires:
-            - build_and_push_to_dockerhub
+            - build
           context: aws
