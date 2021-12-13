@@ -5,8 +5,7 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: cimg/python:3.10.1
+    executor: aws-cli/default
     steps:
        - checkout
        - setup_remote_docker
