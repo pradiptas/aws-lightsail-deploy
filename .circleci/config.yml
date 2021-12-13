@@ -30,11 +30,15 @@ jobs:
             if ! [ -x "$(which pip3)" ]; then
             sudo apt-get -y install python3-pip
             fi
-       - aws-cli/install
+      #  - aws-cli/install
        - aws-cli/setup:
           profile-name: default
+       - run: 
+          name: get aws lightsail container service
+          command: |
+            aws lightsail get-container-services
 workflows:
-  aws-cli:
+  deploy-to-lightsail:
     jobs:
       - build:
           context: aws
