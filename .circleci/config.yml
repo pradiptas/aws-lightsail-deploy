@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@2.0
-  
 
 jobs:
   build:
@@ -18,7 +17,7 @@ jobs:
             docker tag pradsanyal/aws-lightsail-app:latest pradsanyal/aws-lightsail-app:1.0.$CIRCLE_BUILD_NUM
             docker images
             # login to docker hub
-            echo $DOCKER_PASSWORD	 | docker login -u $DOCKER_USER --password-stdin
+            echo $DOCKER_PASSWORD	| docker login -u $DOCKER_USER --password-stdin
             docker push --all-tags pradsanyal/aws-lightsail-app
        - run:
           name: Install python
@@ -30,7 +29,6 @@ jobs:
             if ! [ -x "$(which pip3)" ]; then
             sudo apt-get -y install python3-pip
             fi
-      #  - aws-cli/install
        - aws-cli/setup:
           profile-name: default
        - run: 
@@ -40,9 +38,10 @@ jobs:
        - run: 
           name: push image to aws lightsail 
           command: |
+           # install aws lightsail ctl
            sudo curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
            sudo chmod +x /usr/local/bin/lightsailctl 
-           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --image pradsanyal/aws-lightsail-app:latest
+           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --label $CIRCLE_BUILD_NUM --image pradsanyal/aws-lightsail-app:latest
        - run:
           name: deploy to lightsail
           command: |
