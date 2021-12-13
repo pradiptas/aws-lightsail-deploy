@@ -22,7 +22,7 @@ jobs:
        - run:
           name: install awscli
           command: |
-            python -m pip install awscliv2
+            python3 -m pip3 install awscliv2
             aws lightsail 
       #  - run:
       #     name: Install Lightsail Control CLI
