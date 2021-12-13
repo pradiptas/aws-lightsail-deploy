@@ -34,7 +34,7 @@ workflows:
   build:
     jobs:
       - build
-      - deploy_to_lightsail:
+      - deploy:
           requires:
             - build
           context: aws
