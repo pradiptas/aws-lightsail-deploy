@@ -1,7 +1,8 @@
-version: 2
+version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@2.0
+  
 
 jobs:
   build:
@@ -20,13 +21,16 @@ jobs:
             echo $DOCKER_PASSWORD	 | docker login -u $DOCKER_USER --password-stdin
             docker push --all-tags pradsanyal/aws-lightsail-app
        - run:
-          name: install awscli
+          name: Install python
           command: |
-            sudo add-apt-repository universe
             sudo apt-get update
-            sudo apt-get install python3-pip
-            python3 -m pip3 install awscliv2
-            aws lightsail 
+            if ! [ -x "$(which python3)" ]; then
+            sudo apt-get -y install python3
+            fi
+            if ! [ -x "$(which pip3)" ]; then
+            sudo apt-get -y install python3-pip
+            fi
+       - aws-cli/install
       #  - run:
       #     name: Install Lightsail Control CLI
       #     command: |
