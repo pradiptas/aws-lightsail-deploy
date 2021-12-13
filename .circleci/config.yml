@@ -21,7 +21,9 @@ jobs:
             docker push --all-tags pradsanyal/aws-lightsail-app
        - run:
           name: Install Lightsail Control CLI
-          command: brew install aws/tap/lightsailctl
+          command: |
+            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+            brew install aws/tap/lightsailctl
   
   deploy:
     docker:
