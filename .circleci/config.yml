@@ -14,11 +14,12 @@ jobs:
           name: Build and push Docker image
           command: |
             docker-compose build
-            docker tag pradsanyal/aws-lightsail-app:latest pradsanyal/aws-lightsail-app:1.0.$CIRCLE_BUILD_NUM
+            #docker tag pradsanyal/aws-lightsail-app:latest pradsanyal/aws-lightsail-app:1.0.$CIRCLE_BUILD_NUM
+            docker tag aws-lightsail-app:latest aws-lightsail-app:1.0.$CIRCLE_BUILD_NUM
             docker images
-            # login to docker hub
-            echo $DOCKER_PASSWORD	| docker login -u $DOCKER_USER --password-stdin
-            docker push --all-tags pradsanyal/aws-lightsail-app
+            # # login to docker hub
+            # echo $DOCKER_PASSWORD	| docker login -u $DOCKER_USER --password-stdin
+            # docker push --all-tags pradsanyal/aws-lightsail-app
        - run:
           name: Install python
           command: |

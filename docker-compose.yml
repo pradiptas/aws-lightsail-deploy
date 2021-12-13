@@ -5,7 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pradsanyal/aws-lightsail-app:latest
+    # image: pradsanyal/aws-lightsail-app:latest
+    image: aws-lightsail-app:latest
     ports:
       - "8080:8080" 
     restart: unless-stopped
