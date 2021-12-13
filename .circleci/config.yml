@@ -42,7 +42,7 @@ jobs:
           command: |
            sudo curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
            sudo chmod +x /usr/local/bin/lightsailctl 
-           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --image aws-lightsail-app:latest
+           aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --image pradsanyal/aws-lightsail-app:latest
 workflows:
   deploy-to-lightsail:
     jobs:
