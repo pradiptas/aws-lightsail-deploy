@@ -37,6 +37,10 @@ jobs:
           name: get aws lightsail container service
           command: |
             aws lightsail get-container-services
+       - run: 
+          name: push image to aws lightsail 
+          command: |
+            aws lightsail push-container-image --region us-east-1 --service-name aws-lightsail-app --label python-app --image aws-lightsail-app:latest
 workflows:
   deploy-to-lightsail:
     jobs:
